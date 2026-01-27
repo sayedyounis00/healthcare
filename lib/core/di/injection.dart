@@ -5,6 +5,7 @@ import 'package:healthcare/features/getUserInfo/data/datasource/patient_remote_d
 import 'package:healthcare/features/getUserInfo/data/repositories/patient_repository_impl.dart';
 import 'package:healthcare/features/getUserInfo/domain/repositories/patient_repository.dart';
 import 'package:healthcare/features/getUserInfo/presentation/cubit/patient/patient_cubit.dart';
+import 'package:healthcare/features/userProfile/presentaion/cubit/cubit/user_profile_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -27,9 +28,9 @@ Future<void> setUp() async {
   );
 
   // Cubits
-  sl.registerFactory<PatientCubit>(
-    () => PatientCubit(
-      sl<PatientRepository>(),
-    ),
+  sl.registerFactory<PatientCubit>(() => PatientCubit(sl<PatientRepository>()));
+
+  sl.registerFactory<UserProfileCubit>(
+    () => UserProfileCubit(sl<PatientRepository>()),
   );
 }
