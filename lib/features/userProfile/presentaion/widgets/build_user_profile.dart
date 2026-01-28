@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:healthcare/features/getUserInfo/domain/entities/patient.dart';
 import 'package:healthcare/features/userProfile/presentaion/cubit/cubit/user_profile_cubit.dart';
-import 'package:healthcare/features/userProfile/presentaion/widgets/pageComponent/chip_list.dart';
-import 'package:healthcare/features/userProfile/presentaion/widgets/pageComponent/info_row.dart';
-import 'package:healthcare/features/userProfile/presentaion/widgets/pageComponent/profile_header.dart';
+import 'package:healthcare/features/userProfile/presentaion/widgets/Components/chip_list.dart';
+import 'package:healthcare/features/userProfile/presentaion/widgets/Components/info_row.dart';
+import 'package:healthcare/features/userProfile/presentaion/widgets/Components/profile_header.dart';
 import 'package:intl/intl.dart';
 
 class UserProfileContent extends StatelessWidget {
