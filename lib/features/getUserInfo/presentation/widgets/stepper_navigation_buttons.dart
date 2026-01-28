@@ -6,6 +6,31 @@ class StepperNavigationButtons extends StatelessWidget {
   final VoidCallback onNext;
   final VoidCallback onPrevious;
   final VoidCallback onSubmit;
+
+  // Cached static decoration - using withAlpha instead of deprecated withOpacity
+  static final _containerDecoration = BoxDecoration(
+    color: Colors.white,
+    boxShadow: [
+      BoxShadow(
+        color: Colors.black.withAlpha(38), // 0.15 * 255 ≈ 38
+        blurRadius: 10,
+        offset: const Offset(0, -5),
+      ),
+    ],
+  );
+
+  static const _backButtonTextStyle = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: Colors.black87,
+  );
+
+  static const _continueButtonTextStyle = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: Colors.white,
+  );
+
   const StepperNavigationButtons({
     super.key,
     required this.currentStep,
@@ -19,16 +44,7 @@ class StepperNavigationButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.15),
-            blurRadius: 10,
-            offset: const Offset(0, -5),
-          ),
-        ],
-      ),
+      decoration: _containerDecoration,
       child: Row(
         children: [
           if (currentStep > 0)
@@ -42,14 +58,7 @@ class StepperNavigationButtons extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                child: const Text(
-                  'Back',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black87,
-                  ),
-                ),
+                child: const Text('Back', style: _backButtonTextStyle),
               ),
             ),
           if (currentStep > 0) const SizedBox(width: 12),
@@ -67,11 +76,7 @@ class StepperNavigationButtons extends StatelessWidget {
               ),
               child: Text(
                 currentStep < totalSteps - 1 ? 'Continue' : 'Submit',
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
+                style: _continueButtonTextStyle,
               ),
             ),
           ),

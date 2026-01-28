@@ -238,14 +238,19 @@ class _CustomTextFieldState extends State<CustomTextField> {
               ),
               validator: (value) {
                 final error = widget.validator?.call(value);
-                WidgetsBinding.instance.addPostFrameCallback((_) {
-                  if (mounted) {
-                    setState(() {
-                      _hasError = error != null;
-                      _errorText = error;
-                    });
-                  }
-                });
+                // Schedule state update for next frame to avoid build-time setState
+                // Only update if the error state actually changed
+                if (_hasError != (error != null) || _errorText != error) {
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    if (mounted &&
+                        (_hasError != (error != null) || _errorText != error)) {
+                      setState(() {
+                        _hasError = error != null;
+                        _errorText = error;
+                      });
+                    }
+                  });
+                }
                 return error;
               },
               onChanged: widget.onChanged,
