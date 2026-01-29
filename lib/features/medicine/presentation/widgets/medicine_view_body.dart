@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:healthcare/core/constants/app_colors.dart';
-import 'package:healthcare/features/medicine/data/models/medicine_model.dart'
-    as models;
+import 'package:healthcare/features/medicine/data/models/medicine_model.dart';
 import 'package:healthcare/features/medicine/presentation/cubit/medicine_cubit.dart';
 import 'package:healthcare/features/medicine/presentation/widgets/components/add_edit_medicine_sheet.dart';
 import 'package:healthcare/features/medicine/presentation/widgets/components/empty_medicine_state.dart';
@@ -50,10 +49,7 @@ class MedicineViewBody extends StatelessWidget {
   }
 
   /// Compare two lists for equality
-  bool _areListsEqual(
-    List<models.MedicineModel> a,
-    List<models.MedicineModel> b,
-  ) {
+  bool _areListsEqual(List<MedicineModel> a, List<MedicineModel> b) {
     if (a.length != b.length) return false;
     for (int i = 0; i < a.length; i++) {
       if (a[i].id != b[i].id || a[i].updatedAt != b[i].updatedAt) {
@@ -167,7 +163,7 @@ class MedicineViewBody extends StatelessWidget {
 
   Widget _buildMedicineList(
     BuildContext context,
-    List<models.MedicineModel> medicines,
+    List<MedicineModel> medicines,
   ) {
     return RefreshIndicator(
       onRefresh: () => context.read<MedicineCubit>().refreshMedicines(),
@@ -189,10 +185,7 @@ class MedicineViewBody extends StatelessWidget {
     );
   }
 
-  void _showAddEditSheet(
-    BuildContext context, {
-    models.MedicineModel? medicine,
-  }) {
+  void _showAddEditSheet(BuildContext context, {MedicineModel? medicine}) {
     final cubit = context.read<MedicineCubit>();
     showModalBottomSheet(
       context: context,
@@ -212,7 +205,7 @@ class MedicineViewBody extends StatelessWidget {
     );
   }
 
-  void _confirmDelete(BuildContext context, models.MedicineModel medicine) {
+  void _confirmDelete(BuildContext context, MedicineModel medicine) {
     final cubit = context.read<MedicineCubit>();
     showDialog(
       context: context,
@@ -257,7 +250,9 @@ class MedicineViewBody extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               Navigator.pop(dialogContext);
-              cubit.deleteMedicine(medicine.id);
+              if (medicine.id != null) {
+                cubit.deleteMedicine(medicine.id!);
+              }
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.error,

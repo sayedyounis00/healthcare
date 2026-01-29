@@ -24,9 +24,11 @@ class MedicineRepoImpl extends MedicineRepository {
   }
 
   @override
-  Future<Either<Failure, List<Medicine>>> getMedicine(int id) async {
+  Future<Either<Failure, List<Medicine>>> getMedicineBypatientId(int pientId) async {
     try {
-      final allmedicine = await medicineLocalDataSource.getMedicine(id) ?? [];
+      final allmedicine = await medicineLocalDataSource.getMedicinesByPatientId(
+        pientId,
+      );
       return Right(allmedicine);
     } on LocalDatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));
@@ -36,14 +38,29 @@ class MedicineRepoImpl extends MedicineRepository {
   }
 
   @override
-  Future<Either<Failure, int>> deleteMedicine(int id) {
-    // TODO: implement deleteMedicine
-    throw UnimplementedError();
+  Future<Either<Failure, int>> updateMedicine(Medicine medicine) async {
+    try {
+      final medicineModel = MedicineModel.fromEntity(medicine);
+      final result = await medicineLocalDataSource.updateMedicine(
+        medicineModel,
+      );
+      return Right(result);
+    } on LocalDatabaseException catch (e) {
+      return Left(DatabaseFailure(e.message));
+    } catch (e) {
+      return Left(DatabaseFailure('Unexpected error: $e'));
+    }
   }
 
   @override
-  Future<Either<Failure, int>> updateMedicine(Medicine medicine) {
-    // TODO: implement updateMedicine
-    throw UnimplementedError();
+  Future<Either<Failure, int>> deleteMedicine(int id) async {
+    try {
+      final result = await medicineLocalDataSource.deleteMedicine(id);
+      return Right(result);
+    } on LocalDatabaseException catch (e) {
+      return Left(DatabaseFailure(e.message));
+    } catch (e) {
+      return Left(DatabaseFailure('Unexpected error: $e'));
+    }
   }
 }
