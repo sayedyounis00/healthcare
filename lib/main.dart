@@ -3,11 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:healthcare/core/di/injection.dart' as di;
 import 'package:healthcare/core/init/app_initializer.dart';
 import 'package:healthcare/features/getUserInfo/presentation/cubit/patient/patient_cubit.dart';
-import 'package:healthcare/features/medicine/presentation/pages/medicine_view.dart';
+import 'package:healthcare/features/userProfile/presentaion/pages/user_profile_view.dart';
 
 void main() async {
   await AppInitializer.initialize();
-
   runApp(const MyApp());
 }
 
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: BlocProvider(
         create: (context) => di.sl<PatientCubit>(),
-        child: const MedicineView(),
+        child: const UserProfileView(),
       ),
     );
   }

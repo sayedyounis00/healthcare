@@ -3,13 +3,13 @@
 class DatabaseConstants {
   // Database Configuration
   static const String databaseName = 'patient_app.db';
-  static const int databaseVersion = 1;
+  static const int databaseVersion = 3;
 
   // ==========================================
-  // TABLE NAMES
+  // TABLE NAMES (matching Supabase schema)
   // ==========================================
   static const String patientTable = 'patient_data';
-  static const String medicineTable = 'medicine_data';
+  static const String medicineTable = 'medicine';
 
   // ==========================================
   // PATIENT TABLE COLUMNS
@@ -35,14 +35,16 @@ class DatabaseConstants {
   static const String columnCurrentMedications = 'current_medications';
 
   // ==========================================
-  // MEDICINE TABLE COLUMNS
+  // MEDICINE TABLE COLUMNS (matching Supabase schema)
   // ==========================================
   static const String medicineId = 'id';
-  static const String medicinePatientId = 'patient_id';
+  static const String medicinePatientId = 'patient_id'; // ForigenKey(FK) to patient_data.id
   static const String medicineDrugName = 'drug_name';
   static const String medicineDescription = 'description';
-  static const String medicineTimesToTake = 'times_to_take';
+  static const String medicineTimesToTake =
+      'times_to_take';
   static const String medicineTags = 'tags';
+  static const String medicineIsActive = 'is_active';
   static const String medicineCreatedAt = 'created_at';
   static const String medicineUpdatedAt = 'updated_at';
 }

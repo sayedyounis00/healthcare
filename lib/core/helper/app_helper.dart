@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AppHelper {
+  AppHelper._();
+
   static Future<void> makePhoneCall(
     String phoneNumber,
     BuildContext context,
   ) async {
-    // Clean the phone number (remove spaces and dashes)
     final cleanNumber = phoneNumber.replaceAll(RegExp(r'[\s-]'), '');
-    final Uri phoneUri = Uri(
-      scheme: 'tel',
-      path: cleanNumber,
-    );
+    final Uri phoneUri = Uri(scheme: 'tel', path: cleanNumber);
     try {
       if (cleanNumber != "") {
         await launchUrl(phoneUri);
@@ -40,7 +38,6 @@ class AppHelper {
       path: email,
       queryParameters: {'subject': 'Healthcare App - Contact'},
     );
-
     try {
       if (email != "") {
         await launchUrl(emailUri);
