@@ -1,7 +1,7 @@
 // lib/features/patient/data/models/patient_model.dart
 
 import 'dart:convert';
-import 'package:healthcare/core/local_database/local_datebase_constants.dart';
+import 'package:healthcare/core/localDatabase/local_datebase_constants.dart';
 
 import '../../domain/entities/patient.dart';
 

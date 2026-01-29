@@ -1,5 +1,5 @@
-import 'package:healthcare/core/local_database/local_databse_helper.dart';
-import 'package:healthcare/core/local_database/local_datebase_constants.dart';
+import 'package:healthcare/core/localDatabase/local_databse_helper.dart';
+import 'package:healthcare/core/localDatabase/local_datebase_constants.dart';
 import 'package:sqflite/sqflite.dart';
 import '../../../../core/error/exceptions.dart';
 import '../models/patient_model.dart';
