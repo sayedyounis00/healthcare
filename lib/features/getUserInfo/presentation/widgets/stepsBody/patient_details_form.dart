@@ -80,6 +80,7 @@ class _PatientDetailsFormState extends State<PatientDetailsForm>
     _dateController.dispose();
     _phoneController.dispose();
     _emailController.dispose();
+    _addressController.dispose();
     super.dispose();
   }
 

@@ -1,5 +1,5 @@
-import 'package:healthcare/core/local_database/local_databse_helper.dart';
-import 'package:healthcare/core/local_database/local_datebase_constants.dart';
+import 'package:healthcare/core/localDatabase/local_databse_helper.dart';
+import 'package:healthcare/core/localDatabase/local_datebase_constants.dart';
 import 'package:sqflite/sqflite.dart';
 import '../../../../core/error/exceptions.dart';
 import '../models/patient_model.dart';
@@ -12,7 +12,7 @@ abstract class PatientLocalDataSource {
 }
 
 class PatientLocalDataSourceImpl implements PatientLocalDataSource {
-  final DatabaseHelper databaseHelper;
+  final LocalDatabaseHelper databaseHelper;
 
   PatientLocalDataSourceImpl({required this.databaseHelper});
 
@@ -47,7 +47,6 @@ class PatientLocalDataSourceImpl implements PatientLocalDataSource {
     }
   }
 
-
   @override
   Future<int> updatePatient(PatientModel patient) async {
     try {
@@ -76,6 +75,4 @@ class PatientLocalDataSourceImpl implements PatientLocalDataSource {
       throw LocalDatabaseException('Failed to delete patient: $e');
     }
   }
-
-
 }
