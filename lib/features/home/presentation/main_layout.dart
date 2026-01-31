@@ -28,7 +28,7 @@ class _MainLayoutState extends State<MainLayout> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.surfaceLight,
-      body: Center(child: _pages.elementAt(_selectedIndex)),
+      body: IndexedStack(index: _selectedIndex, children: _pages),
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
           color: AppColors.surfaceLight,
