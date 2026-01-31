@@ -50,6 +50,7 @@ class AppColors {
   static const Color surfaceLight = Color(0xFFFFFFFF);
   static const Color cardLight = Color(0xFFF5F5F5);
   static const Color dividerLight = Color(0xFFE0E0E0);
+  static const Color shadow = Color(0x1A000000);
 
   // Dark Mode Backgrounds
   static const Color backgroundDark = Color(0xFF121212);
