@@ -13,7 +13,7 @@ abstract class MedicineLocalDataSource {
 }
 
 class MedicineLocalDataSourceImpl implements MedicineLocalDataSource {
-  final DatabaseHelper databaseHelper;
+  final LocalDatabaseHelper databaseHelper;
   bool _tableChecked = false;
 
   MedicineLocalDataSourceImpl({required this.databaseHelper});

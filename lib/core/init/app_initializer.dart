@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:healthcare/core/config/env_config.dart';
 import 'package:healthcare/core/di/injection.dart' as di;
 import 'package:healthcare/core/localDatabase/local_databse_helper.dart';
+import 'package:healthcare/core/sync/sync_manager.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -42,6 +43,8 @@ class AppInitializer {
   static Future<void> _initializeDependencyInjection() async {
     try {
       await di.setUp();
+      di.sl<SyncManager>().startPeriodicSync();
+      debugPrint('✅ Sync manager started - periodic sync enabled');
     } catch (e) {
       debugPrint('Error initializing DI: $e');
       rethrow;
@@ -50,7 +53,7 @@ class AppInitializer {
 
   static Future<void> _printDatabaseTables() async {
     try {
-      final db = await DatabaseHelper.instance.database;
+      final db = await LocalDatabaseHelper.instance.database;
       final tables = await db.rawQuery(
         "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'",
       );

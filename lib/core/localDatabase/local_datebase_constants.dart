@@ -3,7 +3,7 @@
 class DatabaseConstants {
   // Database Configuration
   static const String databaseName = 'patient_app.db';
-  static const int databaseVersion = 3;
+  static const int databaseVersion = 4;
 
   // ==========================================
   // TABLE NAMES (matching Supabase schema)
@@ -38,13 +38,31 @@ class DatabaseConstants {
   // MEDICINE TABLE COLUMNS (matching Supabase schema)
   // ==========================================
   static const String medicineId = 'id';
-  static const String medicinePatientId = 'patient_id'; // ForigenKey(FK) to patient_data.id
+  static const String medicinePatientId =
+      'patient_id'; // ForigenKey(FK) to patient_data.id
   static const String medicineDrugName = 'drug_name';
   static const String medicineDescription = 'description';
-  static const String medicineTimesToTake =
-      'times_to_take';
+  static const String medicineTimesToTake = 'times_to_take';
   static const String medicineTags = 'tags';
   static const String medicineIsActive = 'is_active';
   static const String medicineCreatedAt = 'created_at';
   static const String medicineUpdatedAt = 'updated_at';
+
+  // ==========================================
+  // SYNC QUEUE TABLE COLUMNS
+  // ==========================================
+  static const String syncQueueTable = 'sync_queue';
+  static const String syncId = 'id';
+  static const String syncTableName = 'table_name';
+  static const String syncOperation = 'operation';
+  static const String syncData = 'data';
+  static const String syncRecordId = 'record_id';
+  static const String syncCreatedAt = 'created_at';
+  static const String syncRetryCount = 'retry_count';
+  static const String syncLastError = 'last_error';
+
+  // Sync operations
+  static const String syncOperationInsert = 'insert';
+  static const String syncOperationUpdate = 'update';
+  static const String syncOperationDelete = 'delete';
 }

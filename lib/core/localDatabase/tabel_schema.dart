@@ -144,5 +144,52 @@ class TabelSchema {
         ),
       ],
     ),
+    //==Sync Queue Table Schema==
+    GeneratedTableSchema(
+      tableName: DatabaseConstants.syncQueueTable,
+      columns: [
+        const ColumnDefinition(
+          name: DatabaseConstants.syncId,
+          type: 'INTEGER',
+          isPrimaryKey: true,
+          isAutoIncrement: true,
+        ),
+        const ColumnDefinition(
+          name: DatabaseConstants.syncTableName,
+          type: 'TEXT',
+          isNullable: false,
+        ),
+        const ColumnDefinition(
+          name: DatabaseConstants.syncOperation,
+          type: 'TEXT',
+          isNullable: false,
+        ),
+        const ColumnDefinition(
+          name: DatabaseConstants.syncData,
+          type: 'TEXT',
+          isNullable: false,
+        ),
+        const ColumnDefinition(
+          name: DatabaseConstants.syncRecordId,
+          type: 'INTEGER',
+          isNullable: false,
+        ),
+        const ColumnDefinition(
+          name: DatabaseConstants.syncCreatedAt,
+          type: 'TEXT',
+          isNullable: false,
+        ),
+        const ColumnDefinition(
+          name: DatabaseConstants.syncRetryCount,
+          type: 'INTEGER',
+          isNullable: false,
+        ),
+        const ColumnDefinition(
+          name: DatabaseConstants.syncLastError,
+          type: 'TEXT',
+          isNullable: true,
+        ),
+      ],
+    ),
   ];
 }
