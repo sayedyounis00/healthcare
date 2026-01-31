@@ -12,7 +12,7 @@ abstract class PatientLocalDataSource {
 }
 
 class PatientLocalDataSourceImpl implements PatientLocalDataSource {
-  final DatabaseHelper databaseHelper;
+  final LocalDatabaseHelper databaseHelper;
 
   PatientLocalDataSourceImpl({required this.databaseHelper});
 
@@ -47,7 +47,6 @@ class PatientLocalDataSourceImpl implements PatientLocalDataSource {
     }
   }
 
-
   @override
   Future<int> updatePatient(PatientModel patient) async {
     try {
@@ -76,6 +75,4 @@ class PatientLocalDataSourceImpl implements PatientLocalDataSource {
       throw LocalDatabaseException('Failed to delete patient: $e');
     }
   }
-
-
 }
