@@ -36,7 +36,7 @@ class MedicineRepoImpl extends MedicineRepository {
         debugPrint('✅ Medicine synced to remote successfully');
       } on NetworkException catch (e) {
         // No internet - queue for later sync
-        debugPrint('📴 No internet, queuing medicine for sync');
+        debugPrint('📴 No internet, queuing medicine for sync ${e.toString()}');
         await syncManager.queueSync(
           tableName: DatabaseConstants.medicineTable,
           operation: DatabaseConstants.syncOperationInsert,
@@ -78,7 +78,7 @@ class MedicineRepoImpl extends MedicineRepository {
         await medicineRemoteDataSource.getMedicinesByPatientId(patientId);
         debugPrint('✅ Fetched from remote for sync check');
       } on NetworkException catch (e) {
-        debugPrint('📴 No internet, using local data only');
+        debugPrint('📴 No internet, using local data only ${e.toString()}');
       } on ServerException catch (e) {
         debugPrint('⚠️ Server error, using local data only: ${e.message}');
       }
@@ -107,7 +107,7 @@ class MedicineRepoImpl extends MedicineRepository {
         debugPrint('✅ Medicine synced to remote successfully');
       } on NetworkException catch (e) {
         // No internet - queue for later sync
-        debugPrint('📴 No internet, queuing medicine update for sync');
+        debugPrint('📴 No internet, queuing medicine update for sync ${e.toString()}');
         await syncManager.queueSync(
           tableName: DatabaseConstants.medicineTable,
           operation: DatabaseConstants.syncOperationUpdate,
@@ -148,7 +148,7 @@ class MedicineRepoImpl extends MedicineRepository {
         debugPrint('✅ Medicine deleted from remote successfully');
       } on NetworkException catch (e) {
         // No internet - queue for later sync
-        debugPrint('📴 No internet, queuing medicine delete for sync');
+        debugPrint('📴 No internet, queuing medicine delete for sync ${e.toString()}');
         await syncManager.queueSync(
           tableName: DatabaseConstants.medicineTable,
           operation: DatabaseConstants.syncOperationDelete,
