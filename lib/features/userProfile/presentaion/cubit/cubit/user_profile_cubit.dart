@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:healthcare/features/getUserInfo/domain/entities/patient.dart';
 import 'package:healthcare/features/getUserInfo/domain/repositories/patient_repository.dart';

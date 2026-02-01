@@ -119,7 +119,6 @@ class MedicineTagChip extends StatelessWidget {
     }
   }
 
-  /// Get relevant icon for each tag type
   IconData _getTagIcon(String tagName) {
     final tagLower = tagName.toLowerCase();
 
@@ -151,12 +150,10 @@ class MedicineTagChip extends StatelessWidget {
   }
 }
 
-/// A horizontal scrollable list of tags
 class MedicineTagsList extends StatelessWidget {
   final List<String> tags;
   final bool scrollable;
 
-  // Cached static style
   static const _emptyTextStyle = TextStyle(
     fontSize: 12,
     color: AppColors.gray500,
@@ -176,7 +173,6 @@ class MedicineTagsList extends StatelessWidget {
     }
 
     if (scrollable) {
-      // Use ListView.builder for better performance with many tags
       return SizedBox(
         height: 32,
         child: ListView.builder(

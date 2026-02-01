@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:healthcare/core/constants/app_colors.dart';
 
-/// Header widget for the Medicine page
-/// Shows title, subtitle, and add button with gradient background
 class MedicineHeader extends StatelessWidget {
   final VoidCallback onAddPressed;
   final int medicineCount;
 
-  // Cached static decorations
   static final _containerDecoration = BoxDecoration(
     gradient: AppColors.primaryGradient,
     borderRadius: const BorderRadius.only(
