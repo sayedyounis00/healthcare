@@ -191,5 +191,69 @@ class TabelSchema {
         ),
       ],
     ),
+    //==Appointment Table Schema==\\
+    GeneratedTableSchema(
+      tableName: DatabaseConstants.appoinmentTable,
+      columns: [
+        const ColumnDefinition(
+          name: DatabaseConstants.appointmentId,
+          type: 'INTEGER',
+          isPrimaryKey: true,
+          isAutoIncrement: true,
+        ),
+        const ColumnDefinition(
+          name: DatabaseConstants.appointmentPatientId,
+          type: 'INTEGER',
+          isNullable: false,
+          references:
+              '${DatabaseConstants.patientTable}(${DatabaseConstants.columnId}) ON DELETE CASCADE',
+        ),
+        const ColumnDefinition(
+          name: DatabaseConstants.appointmentDoctorName,
+          type: 'TEXT',
+          isNullable: false,
+        ),
+        const ColumnDefinition(
+          name: DatabaseConstants.appointmentSpecialty,
+          type: 'TEXT',
+          isNullable: false,
+        ),
+        const ColumnDefinition(
+          name: DatabaseConstants.appointmentClinicName,
+          type: 'TEXT',
+          isNullable: false,
+        ),
+        const ColumnDefinition(
+          name: DatabaseConstants.appointmentDate,
+          type: 'TEXT',
+          isNullable: false,
+        ),
+        const ColumnDefinition(
+          name: DatabaseConstants.appointmentTime,
+          type: 'TEXT',
+          isNullable: false,
+        ),
+        const ColumnDefinition(
+          name: DatabaseConstants.appointmentStatus,
+          type: 'TEXT',
+          isNullable: false,
+        ),
+        const ColumnDefinition(
+          name: DatabaseConstants.appointmentType,
+          type: 'TEXT',
+          isNullable: false,
+        ),
+        const ColumnDefinition(
+          name: DatabaseConstants.appointmentCreatedAt,
+          type: 'TEXT',
+          isNullable: false,
+        ),
+        const ColumnDefinition(
+          name: DatabaseConstants.appointmentUpdatedAt,
+          type: 'TEXT',
+          isNullable: true,
+        ),
+      ],
+    ),
   ];
 }

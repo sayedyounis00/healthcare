@@ -46,3 +46,5 @@ app.*.map.json
 
 # Environment variables - NEVER commit this file!
 .env
+# external_resources
+.opencode

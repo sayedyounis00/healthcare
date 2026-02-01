@@ -10,6 +10,7 @@ class DatabaseConstants {
   // ==========================================
   static const String patientTable = 'patient_data';
   static const String medicineTable = 'medicine';
+  static const String appoinmentTable = 'appointment';
 
   // ==========================================
   // PATIENT TABLE COLUMNS
@@ -47,7 +48,20 @@ class DatabaseConstants {
   static const String medicineIsActive = 'is_active';
   static const String medicineCreatedAt = 'created_at';
   static const String medicineUpdatedAt = 'updated_at';
-
+  // ==========================================
+  // Appointment TABLE COLUMNS (matching Supabase schema)
+  // ==========================================
+  static const String appointmentId = 'id';
+  static const String appointmentPatientId = 'patient_id';
+  static const String appointmentDoctorName = 'doctor_name';
+  static const String appointmentSpecialty = 'specialty';
+  static const String appointmentClinicName = 'clinic_name';
+  static const String appointmentDate = 'date';
+  static const String appointmentTime = 'time';
+  static const String appointmentStatus = 'status';
+  static const String appointmentType = 'type';
+  static const String appointmentCreatedAt = 'created_at';
+  static const String appointmentUpdatedAt = 'updated_at';
   // ==========================================
   // SYNC QUEUE TABLE COLUMNS
   // ==========================================

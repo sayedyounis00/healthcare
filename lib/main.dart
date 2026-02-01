@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:healthcare/core/di/injection.dart' as di;
 import 'package:healthcare/core/init/app_initializer.dart';
 import 'package:healthcare/features/getUserInfo/presentation/cubit/patient/patient_cubit.dart';
-import 'package:healthcare/features/home/presentation/main_layout.dart';
+import 'package:healthcare/features/mainLayout/presentation/main_layout.dart';
 
 void main() async {
   await AppInitializer.initialize();
