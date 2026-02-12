@@ -3,9 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:healthcare/core/constants/app_colors.dart';
 import 'package:healthcare/core/di/injection.dart';
 import 'package:healthcare/core/helper/app_helper.dart';
-import 'package:healthcare/core/routing/app_router.dart';
-import 'package:healthcare/core/routing/routes.dart';
-import 'package:healthcare/features/Appointments/presentation/widgets/components/add_edit_appointment_sheet.dart';
 import 'package:healthcare/features/home/presentation/cubit/home_cubit.dart';
 import 'package:healthcare/features/home/presentation/cubit/home_state.dart';
 import 'package:healthcare/features/home/presentation/widgets/components/user_info_header.dart';
@@ -120,8 +117,7 @@ class HomeViewBody extends StatelessWidget {
                         icon: Icons.medication_outlined,
                         title: 'No Medicines',
                         subtitle: 'Add your medications to track them',
-                        onTap: () {
-                        },
+                        onTap: () {},
                       ),
                     ),
 
@@ -138,8 +134,7 @@ class HomeViewBody extends StatelessWidget {
                         icon: Icons.calendar_today_outlined,
                         title: 'No Appointments',
                         subtitle: 'Schedule your doctor visits',
-                        onTap: () {
-                        },
+                        onTap: () {},
                       ),
                     ),
 
@@ -148,9 +143,7 @@ class HomeViewBody extends StatelessWidget {
                       onVideoStreamTap: () {
                         // Navigate to medicines
                       },
-                      onControlRobotTap: () {
-                       Navigator.pushNamed(context,Routes.controlRobot);
-                      },
+                      onControlRobotTap: () {},
                       onProfileTap: () {
                         // Navigate to profile
                       },

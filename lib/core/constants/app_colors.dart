@@ -106,7 +106,7 @@ class AppColors {
 
   static const Color textPrimaryDark = Color(0xFFFFFFFF);
   static const Color textSecondaryDark = Color(0xFFB0B0B0);
-  static const Color textTertiaryDark = Color(0xFF808080);
+  static const Color textTertiaryDark = Color(0xFF500080);
   static const Color textDisabledDark = Color(0xFF616161);
 
   // ==================== Special Medical Use Colors ====================

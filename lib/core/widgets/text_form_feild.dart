@@ -238,8 +238,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
               ),
               validator: (value) {
                 final error = widget.validator?.call(value);
-                // Schedule state update for next frame to avoid build-time setState
-                // Only update if the error state actually changed
                 if (_hasError != (error != null) || _errorText != error) {
                   WidgetsBinding.instance.addPostFrameCallback((_) {
                     if (mounted &&
@@ -364,6 +362,32 @@ class FieldValidators {
     }
     if (!value.contains(RegExp(r'[0-9]'))) {
       return 'Password must contain at least one number';
+    }
+    return null;
+  }
+    static String? validateIpAddress(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'IP address is required';
+    }
+    final parts = value.split('.');
+    if (parts.length != 4) {
+      return 'Invalid IP format';
+    }
+    for (final part in parts) {
+      final num = int.tryParse(part);
+      if (num == null || num < 0 || num > 255) {
+        return 'Invalid IP format';
+      }
+    }
+    return null;
+  }
+    static String? validatePort(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Port is required';
+    }
+    final port = int.tryParse(value);
+    if (port == null || port < 1 || port > 65535) {
+      return 'Port must be 1-65535';
     }
     return null;
   }

@@ -268,7 +268,7 @@ class _AddEditAppointmentSheetState extends State<AddEditAppointmentSheet> {
             border: Border.all(color: AppColors.gray200),
           ),
           child: DropdownButtonFormField<String>(
-            value: _selectedSpecialty,
+            initialValue: _selectedSpecialty,
             decoration: const InputDecoration(
               contentPadding: EdgeInsets.symmetric(
                 horizontal: 16,
@@ -321,7 +321,7 @@ class _AddEditAppointmentSheetState extends State<AddEditAppointmentSheet> {
             border: Border.all(color: AppColors.gray200),
           ),
           child: DropdownButtonFormField<String>(
-            value: _selectedType,
+            initialValue: _selectedType,
             decoration: const InputDecoration(
               contentPadding: EdgeInsets.symmetric(
                 horizontal: 16,
@@ -462,7 +462,7 @@ class _AddEditAppointmentSheetState extends State<AddEditAppointmentSheet> {
             border: Border.all(color: AppColors.gray200),
           ),
           child: DropdownButtonFormField<AppointmentStatus>(
-            value: _selectedStatus,
+            initialValue: _selectedStatus,
             decoration: const InputDecoration(
               contentPadding: EdgeInsets.symmetric(
                 horizontal: 16,

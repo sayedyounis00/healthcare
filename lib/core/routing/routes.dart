@@ -4,4 +4,5 @@ class Routes {
   static const String appointments = '/appointments';
   static const String medicine = '/medicine';
   static const String userProfile = '/userProfile';
+  static const String piConnection = '/piConnection';
 }

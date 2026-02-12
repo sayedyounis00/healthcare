@@ -4,6 +4,7 @@ import 'package:healthcare/features/Appointments/presentation/pages/appointments
 import 'package:healthcare/features/home/presentation/home_view.dart';
 import 'package:healthcare/features/mainLayout/presentation/main_layout.dart';
 import 'package:healthcare/features/medicine/presentation/pages/medicine_view.dart';
+import 'package:healthcare/features/piConnection/presentation/pages/pi_connection_page.dart';
 import 'package:healthcare/features/userProfile/presentaion/pages/user_profile_view.dart';
 
 class AppRouter {
@@ -21,6 +22,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const MedicineView());
       case Routes.userProfile:
         return MaterialPageRoute(builder: (_) => const UserProfileView());
+      case Routes.piConnection:
+        return MaterialPageRoute(builder: (_) => const PiConnectionPage());
       default:
         return null;
     }

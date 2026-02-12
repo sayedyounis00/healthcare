@@ -24,3 +24,7 @@ class NetworkFailure extends Failure {
 class SyncFailure extends Failure {
   const SyncFailure(super.message);
 }
+
+class ServerFailure extends Failure {
+  const ServerFailure({required String message}) : super(message);
+}
