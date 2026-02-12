@@ -23,6 +23,7 @@ class PatientModel extends Patient {
     required super.chronicConditions,
     required super.allergies,
     required super.currentMedications,
+    super.robotName,
   });
 
   Map<String, dynamic> toMap() {
@@ -42,10 +43,14 @@ class PatientModel extends Patient {
       DatabaseConstants.columnEmergencyContactRelationship:
           emergencyContactRelationship,
       DatabaseConstants.columnEmergencyContactAddress: emergencyContactAddress,
-      DatabaseConstants.columnChronicConditions:
-          jsonEncode(chronicConditions), // Store lists as JSON strings
+      DatabaseConstants.columnChronicConditions: jsonEncode(
+        chronicConditions,
+      ), // Store lists as JSON strings
       DatabaseConstants.columnAllergies: jsonEncode(allergies),
-      DatabaseConstants.columnCurrentMedications: jsonEncode(currentMedications),
+      DatabaseConstants.columnCurrentMedications: jsonEncode(
+        currentMedications,
+      ),
+      DatabaseConstants.columnRobotName: robotName,
     };
   }
 
@@ -54,7 +59,9 @@ class PatientModel extends Patient {
       id: map[DatabaseConstants.columnId] as int?,
       name: map[DatabaseConstants.columnName] as String,
       gender: map[DatabaseConstants.columnGender] as String,
-      birthDate: DateTime.parse(map[DatabaseConstants.columnBirthDate] as String),
+      birthDate: DateTime.parse(
+        map[DatabaseConstants.columnBirthDate] as String,
+      ),
       phone: map[DatabaseConstants.columnPhone] as String,
       email: map[DatabaseConstants.columnEmail] as String,
       address: map[DatabaseConstants.columnAddress] as String,
@@ -64,21 +71,27 @@ class PatientModel extends Patient {
       emergencyContactPhone:
           map[DatabaseConstants.columnEmergencyContactPhone] as String,
       emergencyContactAlternativePhone:
-          map[DatabaseConstants.columnEmergencyContactAlternativePhone] as String,
+          map[DatabaseConstants.columnEmergencyContactAlternativePhone]
+              as String,
       emergencyContactRelationship:
           map[DatabaseConstants.columnEmergencyContactRelationship] as String,
       emergencyContactAddress:
           map[DatabaseConstants.columnEmergencyContactAddress] as String,
-      chronicConditions: (jsonDecode(map[DatabaseConstants.columnChronicConditions] as String) as List)
-          .map((e) => e as String)
-          .toList(),
-      allergies: (jsonDecode(map[DatabaseConstants.columnAllergies] as String) as List)
-          .map((e) => e as String)
-          .toList(),
-      currentMedications:
-          (jsonDecode(map[DatabaseConstants.columnCurrentMedications] as String) as List)
+      chronicConditions:
+          (jsonDecode(map[DatabaseConstants.columnChronicConditions] as String)
+                  as List)
               .map((e) => e as String)
               .toList(),
+      allergies:
+          (jsonDecode(map[DatabaseConstants.columnAllergies] as String) as List)
+              .map((e) => e as String)
+              .toList(),
+      currentMedications:
+          (jsonDecode(map[DatabaseConstants.columnCurrentMedications] as String)
+                  as List)
+              .map((e) => e as String)
+              .toList(),
+      robotName: map[DatabaseConstants.columnRobotName] as String?,
     );
   }
 
@@ -94,12 +107,14 @@ class PatientModel extends Patient {
       bloodType: patient.bloodType,
       emergencyContactName: patient.emergencyContactName,
       emergencyContactPhone: patient.emergencyContactPhone,
-      emergencyContactAlternativePhone: patient.emergencyContactAlternativePhone,
+      emergencyContactAlternativePhone:
+          patient.emergencyContactAlternativePhone,
       emergencyContactRelationship: patient.emergencyContactRelationship,
       emergencyContactAddress: patient.emergencyContactAddress,
       chronicConditions: patient.chronicConditions,
       allergies: patient.allergies,
       currentMedications: patient.currentMedications,
+      robotName: patient.robotName,
     );
   }
 
@@ -120,6 +135,7 @@ class PatientModel extends Patient {
     List<String>? chronicConditions,
     List<String>? allergies,
     List<String>? currentMedications,
+    String? robotName,
   }) {
     return PatientModel(
       id: id ?? this.id,
@@ -131,15 +147,19 @@ class PatientModel extends Patient {
       address: address ?? this.address,
       bloodType: bloodType ?? this.bloodType,
       emergencyContactName: emergencyContactName ?? this.emergencyContactName,
-      emergencyContactPhone: emergencyContactPhone ?? this.emergencyContactPhone,
+      emergencyContactPhone:
+          emergencyContactPhone ?? this.emergencyContactPhone,
       emergencyContactAlternativePhone:
-          emergencyContactAlternativePhone ?? this.emergencyContactAlternativePhone,
+          emergencyContactAlternativePhone ??
+          this.emergencyContactAlternativePhone,
       emergencyContactRelationship:
           emergencyContactRelationship ?? this.emergencyContactRelationship,
-      emergencyContactAddress: emergencyContactAddress ?? this.emergencyContactAddress,
+      emergencyContactAddress:
+          emergencyContactAddress ?? this.emergencyContactAddress,
       chronicConditions: chronicConditions ?? this.chronicConditions,
       allergies: allergies ?? this.allergies,
       currentMedications: currentMedications ?? this.currentMedications,
+      robotName: robotName ?? this.robotName,
     );
   }
 }

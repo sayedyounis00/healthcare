@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:healthcare/core/constants/app_colors.dart';
+import 'package:healthcare/core/routing/routes.dart';
 import 'package:healthcare/core/widgets/text_form_feild.dart';
 import 'package:healthcare/features/piConnection/data/datasource/pi_connection_datasource.dart';
 import 'package:healthcare/features/piConnection/data/repository/pi_connection_repo_impl.dart';
@@ -293,8 +294,11 @@ class _PiConnectionViewState extends State<PiConnectionView>
   }
 
   void _showSuccessDialog(BuildContext context, PiConnected state) {
+    final serverUrl = 'http://${state.ipAddress}:${state.port}';
+
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (ctx) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         content: Column(
@@ -326,17 +330,36 @@ class _PiConnectionViewState extends State<PiConnectionView>
             const SizedBox(height: 24),
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () => Navigator.pop(ctx),
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.pop(ctx); // Close dialog
+                  Navigator.pushNamed(
+                    context,
+                    Routes.serverInfo,
+                    arguments: serverUrl,
+                  );
+                },
+                icon: const Icon(Icons.info_outline),
+                label: const Text('View Server Info'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.success,
+                  backgroundColor: AppColors.medicalBlue,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                child: const Text('Great!'),
+              ),
+            ),
+            const SizedBox(height: 8),
+            SizedBox(
+              width: double.infinity,
+              child: TextButton(
+                onPressed: () => Navigator.pop(ctx),
+                child: const Text(
+                  'Close',
+                  style: TextStyle(color: AppColors.textSecondaryLight),
+                ),
               ),
             ),
           ],

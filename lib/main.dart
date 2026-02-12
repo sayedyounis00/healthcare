@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'Healthcare App',
       debugShowCheckedModeBanner: false,
       onGenerateRoute: appRouter.generateRoute,
-      initialRoute: Routes.piConnection,
+      initialRoute: Routes.getUserInfo,
     );
   }
 }

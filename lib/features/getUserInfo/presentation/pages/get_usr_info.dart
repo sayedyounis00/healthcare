@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:healthcare/core/di/injection.dart' as di;
 import 'package:healthcare/features/getUserInfo/domain/entities/patient.dart';
 import 'package:healthcare/features/getUserInfo/presentation/cubit/patient/patient_cubit.dart';
 import 'package:healthcare/features/getUserInfo/presentation/widgets/stepsBody/step_content.dart';
@@ -8,14 +9,26 @@ import 'package:healthcare/features/getUserInfo/presentation/widgets/stepper_nav
 import 'package:healthcare/features/getUserInfo/presentation/widgets/stepper_progress_bar.dart';
 import 'package:healthcare/features/home/presentation/home_view.dart';
 
-class GetUserInfo extends StatefulWidget {
+class GetUserInfo extends StatelessWidget {
   const GetUserInfo({super.key});
 
   @override
-  State<GetUserInfo> createState() => _GetUserInfoState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => di.sl<PatientCubit>(),
+      child: const _GetUserInfoContent(),
+    );
+  }
 }
 
-class _GetUserInfoState extends State<GetUserInfo> {
+class _GetUserInfoContent extends StatefulWidget {
+  const _GetUserInfoContent();
+
+  @override
+  State<_GetUserInfoContent> createState() => _GetUserInfoContentState();
+}
+
+class _GetUserInfoContentState extends State<_GetUserInfoContent> {
   int _currentStep = 0;
 
   final Map<int, bool Function()> _stepValidators = {};
@@ -99,6 +112,7 @@ class _GetUserInfoState extends State<GetUserInfo> {
             (medicalData['chronicConditions'] as List<String>?) ?? [],
         allergies: (medicalData['allergies'] as List<String>?) ?? [],
         currentMedications: [],
+        robotName: patientData['robotName'] as String?,
       );
       context.read<PatientCubit>().createPatient(patient);
     } catch (e) {

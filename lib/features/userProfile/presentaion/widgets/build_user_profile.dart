@@ -26,7 +26,7 @@ class UserProfileContent extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  _buildInfoCard( 
+                  _buildInfoCard(
                     title: 'Personal Information',
                     icon: Icons.person_outline_rounded,
                     children: [
@@ -40,6 +40,11 @@ class UserProfileContent extends StatelessWidget {
                       ),
                       InfoRow(label: 'Age', value: '$age years'),
                       InfoRow(label: 'Blood Type', value: patient.bloodType),
+                      if (patient.robotName != null)
+                        InfoRow(
+                          label: 'Robot Name',
+                          value: patient.robotName ?? "",
+                        ),
                     ],
                   ),
                   const SizedBox(height: 16),

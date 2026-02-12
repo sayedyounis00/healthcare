@@ -88,6 +88,11 @@ class TabelSchema {
           type: 'TEXT',
           isNullable: true,
         ),
+        const ColumnDefinition(
+          name: DatabaseConstants.columnRobotName,
+          type: 'TEXT',
+          isNullable: true,
+        ),
       ],
     ),
     //==Medicine Table Schema==\\

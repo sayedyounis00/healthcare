@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:healthcare/core/routing/routes.dart';
 import 'package:healthcare/features/Appointments/presentation/pages/appointments_view.dart';
+import 'package:healthcare/features/getUserInfo/presentation/pages/get_usr_info.dart';
 import 'package:healthcare/features/home/presentation/home_view.dart';
 import 'package:healthcare/features/mainLayout/presentation/main_layout.dart';
 import 'package:healthcare/features/medicine/presentation/pages/medicine_view.dart';
 import 'package:healthcare/features/piConnection/presentation/pages/pi_connection_page.dart';
+import 'package:healthcare/features/serverInfo/presentation/pages/server_info_page.dart';
 import 'package:healthcare/features/userProfile/presentaion/pages/user_profile_view.dart';
 
 class AppRouter {
@@ -24,6 +26,14 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const UserProfileView());
       case Routes.piConnection:
         return MaterialPageRoute(builder: (_) => const PiConnectionPage());
+      case Routes.serverInfo:
+        final serverUrl =
+            settings.arguments as String? ?? 'http://192.168.1.100:8080';
+        return MaterialPageRoute(
+          builder: (_) => ServerInfoPage(serverUrl: serverUrl),
+        );
+      case Routes.getUserInfo:
+        return MaterialPageRoute(builder: (_) => const GetUserInfo());
       default:
         return null;
     }

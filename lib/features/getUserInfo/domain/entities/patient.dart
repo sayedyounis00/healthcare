@@ -17,6 +17,7 @@ class Patient extends Equatable {
   final List<String> chronicConditions;
   final List<String> allergies;
   final List<String> currentMedications;
+  final String? robotName;
 
   const Patient({
     this.id,
@@ -35,6 +36,7 @@ class Patient extends Equatable {
     required this.chronicConditions,
     required this.allergies,
     required this.currentMedications,
+    this.robotName,
   });
 
   @override
@@ -55,5 +57,6 @@ class Patient extends Equatable {
     chronicConditions,
     allergies,
     currentMedications,
+    robotName,
   ];
 }

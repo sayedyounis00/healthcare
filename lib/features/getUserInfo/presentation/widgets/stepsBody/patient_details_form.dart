@@ -25,6 +25,7 @@ class _PatientDetailsFormState extends State<PatientDetailsForm>
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _robotNameController = TextEditingController();
 
   String? _selectedGender;
 
@@ -59,6 +60,7 @@ class _PatientDetailsFormState extends State<PatientDetailsForm>
       'phone': _phoneController.text,
       'email': _emailController.text,
       'address': _addressController.text,
+      'robotName': _robotNameController.text,
     };
   }
 
@@ -81,6 +83,7 @@ class _PatientDetailsFormState extends State<PatientDetailsForm>
     _phoneController.dispose();
     _emailController.dispose();
     _addressController.dispose();
+    _robotNameController.dispose();
     super.dispose();
   }
 
@@ -149,6 +152,14 @@ class _PatientDetailsFormState extends State<PatientDetailsForm>
               hint: 'Enter complete address',
               prefixIcon: Icons.location_on_outlined,
               maxLines: 3,
+              required: true,
+              validator: FieldValidators.required,
+            ),
+            CustomTextField(
+              controller: _robotNameController,
+              label: 'Robot Name',
+              hint: 'Enter robot name',
+              prefixIcon: Icons.smart_toy_outlined,
               required: true,
               validator: FieldValidators.required,
             ),

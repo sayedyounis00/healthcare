@@ -3,7 +3,7 @@
 class DatabaseConstants {
   // Database Configuration
   static const String databaseName = 'patient_app.db';
-  static const int databaseVersion = 4;
+  static const int databaseVersion = 5;
 
   // ==========================================
   // TABLE NAMES (matching Supabase schema)
@@ -34,6 +34,7 @@ class DatabaseConstants {
   static const String columnChronicConditions = 'chronic_conditions';
   static const String columnAllergies = 'allergies';
   static const String columnCurrentMedications = 'current_medications';
+  static const String columnRobotName = 'robot_name';
 
   // ==========================================
   // MEDICINE TABLE COLUMNS (matching Supabase schema)
