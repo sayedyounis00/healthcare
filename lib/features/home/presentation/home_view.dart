@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:healthcare/core/constants/app_colors.dart';
 import 'package:healthcare/core/di/injection.dart';
 import 'package:healthcare/core/helper/app_helper.dart';
+import 'package:healthcare/core/routing/app_router.dart';
+import 'package:healthcare/core/routing/routes.dart';
+import 'package:healthcare/features/Appointments/presentation/widgets/components/add_edit_appointment_sheet.dart';
 import 'package:healthcare/features/home/presentation/cubit/home_cubit.dart';
 import 'package:healthcare/features/home/presentation/cubit/home_state.dart';
 import 'package:healthcare/features/home/presentation/widgets/components/user_info_header.dart';
@@ -108,14 +111,9 @@ class HomeViewBody extends StatelessWidget {
 
                   if (nextMedicine != null)
                     SliverToBoxAdapter(
-                      child: NextMedicineCard(
-                        medicine: nextMedicine,
-                        onTap: () {
-                        },
-                      ),
+                      child: NextMedicineCard(medicine: nextMedicine),
                     ),
 
-                  // No Medicine State
                   if (nextMedicine == null && state.medicineCount == 0)
                     SliverToBoxAdapter(
                       child: _buildEmptyState(
@@ -123,7 +121,6 @@ class HomeViewBody extends StatelessWidget {
                         title: 'No Medicines',
                         subtitle: 'Add your medications to track them',
                         onTap: () {
-                          // Navigate to add medicine
                         },
                       ),
                     ),
@@ -131,12 +128,7 @@ class HomeViewBody extends StatelessWidget {
                   // Next Appointment Card
                   if (nextAppointment != null)
                     SliverToBoxAdapter(
-                      child: NextAppointmentCard(
-                        appointment: nextAppointment,
-                        onTap: () {
-                          // Navigate to appointment details
-                        },
-                      ),
+                      child: NextAppointmentCard(appointment: nextAppointment),
                     ),
 
                   // No Appointment State
@@ -147,26 +139,23 @@ class HomeViewBody extends StatelessWidget {
                         title: 'No Appointments',
                         subtitle: 'Schedule your doctor visits',
                         onTap: () {
-                          // Navigate to add appointment
                         },
                       ),
                     ),
 
                   SliverToBoxAdapter(
                     child: QuickActionsGrid(
-                      medicineCount: state.medicineCount,
-                      appointmentCount: state.appointmentCount,
-                      onMedicineTap: () {
+                      onVideoStreamTap: () {
                         // Navigate to medicines
                       },
-                      onAppointmentTap: () {
-                        // Navigate to appointments
+                      onControlRobotTap: () {
+                       Navigator.pushNamed(context,Routes.controlRobot);
                       },
                       onProfileTap: () {
                         // Navigate to profile
                       },
                       onEmergencyTap: () {
-                           AppHelper.makePhoneCall("123", context);
+                        AppHelper.makePhoneCall("123", context);
                       },
                     ),
                   ),
@@ -243,5 +232,5 @@ class HomeViewBody extends StatelessWidget {
         ),
       ),
     );
-  } 
+  }
 }

@@ -2,19 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:healthcare/core/constants/app_colors.dart';
 
 class QuickActionsGrid extends StatelessWidget {
-  final int medicineCount;
-  final int appointmentCount;
-  final VoidCallback? onMedicineTap;
-  final VoidCallback? onAppointmentTap;
+  final VoidCallback? onVideoStreamTap;
+  final VoidCallback? onControlRobotTap;
   final VoidCallback? onProfileTap;
   final VoidCallback? onEmergencyTap;
 
   const QuickActionsGrid({
     super.key,
-    this.medicineCount = 0,
-    this.appointmentCount = 0,
-    this.onMedicineTap,
-    this.onAppointmentTap,
+    this.onVideoStreamTap,
+    this.onControlRobotTap,
     this.onProfileTap,
     this.onEmergencyTap,
   });
@@ -43,7 +39,7 @@ class QuickActionsGrid extends StatelessWidget {
                   title: 'Live Camera',
                   subtitle: "see the live prodcast from robot cam.",
                   color: AppColors.medicationPrimary,
-                  onTap: onMedicineTap,
+                  onTap: onVideoStreamTap,
                 ),
               ),
               const SizedBox(width: 12),
@@ -53,7 +49,7 @@ class QuickActionsGrid extends StatelessWidget {
                   title: 'Cotrol Robot',
                   subtitle: "Control the robot by joystick",
                   color: AppColors.scheduled,
-                  onTap: onAppointmentTap,
+                  onTap: onControlRobotTap,
                 ),
               ),
             ],
