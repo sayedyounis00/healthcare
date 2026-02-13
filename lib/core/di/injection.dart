@@ -16,6 +16,8 @@ import 'package:healthcare/features/home/data/datasource/home_local_datasource.d
 import 'package:healthcare/features/home/data/repository/home_repository_impl.dart';
 import 'package:healthcare/features/home/domain/repository/home_repository.dart';
 import 'package:healthcare/features/home/presentation/cubit/home_cubit.dart';
+import 'package:healthcare/features/liveStream/data/camera_stream_datasource.dart';
+import 'package:healthcare/features/liveStream/presentation/cubit/live_stream_cubit.dart';
 import 'package:healthcare/features/medicine/data/datasource/medicine_local_datasource.dart';
 import 'package:healthcare/features/medicine/data/datasource/medicine_remote_datasource.dart';
 import 'package:healthcare/features/medicine/data/repository/medicine_repo_impl.dart';
@@ -107,7 +109,13 @@ Future<void> setUp() async {
   );
   sl.registerFactory<HomeCubit>(() => HomeCubit(sl<HomeRepository>()));
 
+  // Live Stream
+  sl.registerFactory<CameraStreamDataSource>(() => CameraStreamDataSource());
+  sl.registerFactory<LiveStreamCubit>(
+    () => LiveStreamCubit(sl<CameraStreamDataSource>()),
+  );
+
   //shared preffrenced
-    final sharedPreferences = await SharedPreferences.getInstance();
+  final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
 }

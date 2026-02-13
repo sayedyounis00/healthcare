@@ -8,6 +8,7 @@ import 'package:healthcare/features/home/presentation/cubit/home_state.dart';
 import 'package:healthcare/features/home/presentation/widgets/components/user_info_header.dart';
 import 'package:healthcare/features/home/presentation/widgets/components/next_medicine_card.dart';
 import 'package:healthcare/features/home/presentation/widgets/components/next_appointment_card.dart';
+import 'package:healthcare/core/routing/routes.dart';
 import 'package:healthcare/features/home/presentation/widgets/components/quick_actions_grid.dart';
 
 class HomeView extends StatelessWidget {
@@ -139,7 +140,7 @@ class HomeViewBody extends StatelessWidget {
                   SliverToBoxAdapter(
                     child: QuickActionsGrid(
                       onVideoStreamTap: () {
-                        
+                        Navigator.pushNamed(context, Routes.liveStream);
                       },
                       onControlRobotTap: () {},
                       onProfileTap: () {

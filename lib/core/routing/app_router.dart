@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:healthcare/core/di/injection.dart';
 import 'package:healthcare/core/routing/routes.dart';
 import 'package:healthcare/features/Appointments/presentation/pages/appointments_view.dart';
 import 'package:healthcare/features/getUserInfo/presentation/pages/get_usr_info.dart';
@@ -8,6 +10,8 @@ import 'package:healthcare/features/medicine/presentation/pages/medicine_view.da
 import 'package:healthcare/features/piConnection/presentation/pages/pi_connection_page.dart';
 import 'package:healthcare/features/serverInfo/presentation/pages/server_info_page.dart';
 import 'package:healthcare/features/userProfile/presentaion/pages/user_profile_view.dart';
+import 'package:healthcare/features/liveStream/presentation/pages/live_stream_view.dart';
+import 'package:healthcare/features/liveStream/presentation/cubit/live_stream_cubit.dart';
 
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {
@@ -34,6 +38,13 @@ class AppRouter {
         );
       case Routes.getUserInfo:
         return MaterialPageRoute(builder: (_) => const GetUserInfo());
+      case Routes.liveStream:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => sl<LiveStreamCubit>(),
+            child: const LiveStreamView(),
+          ),
+        );
       default:
         return null;
     }

@@ -7,4 +7,5 @@ class Routes {
   static const String piConnection = '/piConnection';
   static const String serverInfo = '/serverInfo';
   static const String getUserInfo = '/getUserInfo';
+  static const String liveStream = '/liveStream';
 }
