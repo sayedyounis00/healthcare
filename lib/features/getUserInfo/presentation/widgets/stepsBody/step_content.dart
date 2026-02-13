@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'patient_details_form.dart';
 import 'medical_history_form.dart';
 import 'emergency_contact_form.dart';
-import 'review_submit_form.dart';
 
 class StepContent extends StatelessWidget {
   final int currentStep;
@@ -41,10 +40,6 @@ class StepContent extends StatelessWidget {
               onValidationReady?.call(validateFn, 2),
           onDataGetterReady: (dataGetterFn) =>
               onDataGetterReady?.call(dataGetterFn, 2),
-        ),
-        ReviewSubmitForm(
-          onValidationReady: (validateFn) =>
-              onValidationReady?.call(validateFn, 3),
         ),
       ],
     );

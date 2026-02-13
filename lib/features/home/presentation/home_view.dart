@@ -121,13 +121,11 @@ class HomeViewBody extends StatelessWidget {
                       ),
                     ),
 
-                  // Next Appointment Card
                   if (nextAppointment != null)
                     SliverToBoxAdapter(
                       child: NextAppointmentCard(appointment: nextAppointment),
                     ),
 
-                  // No Appointment State
                   if (nextAppointment == null && state.appointmentCount == 0)
                     SliverToBoxAdapter(
                       child: _buildEmptyState(
@@ -141,7 +139,7 @@ class HomeViewBody extends StatelessWidget {
                   SliverToBoxAdapter(
                     child: QuickActionsGrid(
                       onVideoStreamTap: () {
-                        // Navigate to medicines
+                        
                       },
                       onControlRobotTap: () {},
                       onProfileTap: () {

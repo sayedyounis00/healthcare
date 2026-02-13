@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:healthcare/core/di/injection.dart' as di;
+import 'package:healthcare/core/routing/routes.dart';
 import 'package:healthcare/features/getUserInfo/domain/entities/patient.dart';
 import 'package:healthcare/features/getUserInfo/presentation/cubit/patient/patient_cubit.dart';
 import 'package:healthcare/features/getUserInfo/presentation/widgets/stepsBody/step_content.dart';
 import 'package:healthcare/features/getUserInfo/presentation/widgets/stepper_header.dart';
 import 'package:healthcare/features/getUserInfo/presentation/widgets/stepper_navigation_buttons.dart';
 import 'package:healthcare/features/getUserInfo/presentation/widgets/stepper_progress_bar.dart';
-import 'package:healthcare/features/home/presentation/home_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class GetUserInfo extends StatelessWidget {
   const GetUserInfo({super.key});
@@ -39,14 +40,12 @@ class _GetUserInfoContentState extends State<_GetUserInfoContent> {
     'Patient Details',
     'Medical History',
     'Emergency Contact',
-    'Review and Submit',
   ];
 
   final List<IconData> _stepIcons = [
     Icons.person_outline,
     Icons.medical_information_outlined,
     Icons.emergency_outlined,
-    Icons.check_circle_outline,
   ];
 
   void _nextStep() {
@@ -70,29 +69,29 @@ class _GetUserInfoContentState extends State<_GetUserInfoContent> {
 
   void _submitPatientData() async {
     bool allValid = true;
-    for (int i = 0; i < _stepTitles.length - 1; i++) {
+    for (int i = 0; i < _stepTitles.length; i++) {
       if (_stepValidators[i] != null && !_stepValidators[i]!.call()) {
         allValid = false;
         break;
       }
-      if (!allValid) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Please fill in all required fields'),
-            backgroundColor: const Color(0xFFE53935),
-            behavior: SnackBarBehavior.floating,
-            duration: const Duration(seconds: 3),
-          ),
-        );
-        return;
-      }
+    }
+
+    if (!allValid) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Please fill in all required fields'),
+          backgroundColor: const Color(0xFFE53935),
+          behavior: SnackBarBehavior.floating,
+          duration: const Duration(seconds: 3),
+        ),
+      );
+      return;
     }
 
     try {
       final patientData = _stepDataGetters[0]?.call() ?? {};
       final medicalData = _stepDataGetters[1]?.call() ?? {};
       final emergencyData = _stepDataGetters[2]?.call() ?? {};
-
       final patient = Patient(
         name: patientData['name'] ?? '',
         gender: patientData['gender'] ?? '',
@@ -114,6 +113,8 @@ class _GetUserInfoContentState extends State<_GetUserInfoContent> {
         currentMedications: [],
         robotName: patientData['robotName'] as String?,
       );
+      final prefs = di.sl<SharedPreferences>();
+      prefs.setBool("is_logged_in", true);
       context.read<PatientCubit>().createPatient(patient);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -138,9 +139,7 @@ class _GetUserInfoContentState extends State<_GetUserInfoContent> {
                 const Center(child: CircularProgressIndicator()),
           );
         } else if (state is PatientSuccess) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => const HomeView()),
-          );
+          Navigator.pushReplacementNamed(context, Routes.mainLayout);
         } else if (state is PatientFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -201,7 +200,6 @@ class _GetUserInfoContentState extends State<_GetUserInfoContent> {
                 totalSteps: _stepTitles.length,
               ),
               const SizedBox(height: 24),
-              // Body Content Area
               Expanded(
                 child: Container(
                   width: double.infinity,
@@ -218,7 +216,6 @@ class _GetUserInfoContentState extends State<_GetUserInfoContent> {
                   ),
                 ),
               ),
-              // Bottom Navigation Buttons
               StepperNavigationButtons(
                 currentStep: _currentStep,
                 totalSteps: _stepTitles.length,

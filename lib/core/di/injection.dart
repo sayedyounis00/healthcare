@@ -22,6 +22,7 @@ import 'package:healthcare/features/medicine/data/repository/medicine_repo_impl.
 import 'package:healthcare/features/medicine/domain/repository/medicine_repository.dart';
 import 'package:healthcare/features/medicine/presentation/cubit/medicine_cubit.dart';
 import 'package:healthcare/features/userProfile/presentaion/cubit/cubit/user_profile_cubit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
 
@@ -105,4 +106,8 @@ Future<void> setUp() async {
     () => AppointmentCubit(sl<AppointmentRepository>()),
   );
   sl.registerFactory<HomeCubit>(() => HomeCubit(sl<HomeRepository>()));
+
+  //shared preffrenced
+    final sharedPreferences = await SharedPreferences.getInstance();
+  sl.registerLazySingleton(() => sharedPreferences);
 }
